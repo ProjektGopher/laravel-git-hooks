@@ -3,6 +3,7 @@
 namespace ProjektGopher\GitHooks\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class Run extends Command
 {
@@ -12,7 +13,13 @@ class Run extends Command
 
     public function handle(): int
     {
-        $this->line(__DIR__."/../run-hook {$this->argument('hook')}");
+        if (File::exists(__DIR__.'/../../bin/skip-once')) {
+            File::delete(__DIR__.'/../../bin/skip-once');
+
+            return Command::SUCCESS;
+        }
+
+        $this->line(__DIR__."/../../bin/run-hook {$this->argument('hook')}");
 
         return Command::SUCCESS;
     }
