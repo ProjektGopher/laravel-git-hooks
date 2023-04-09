@@ -13,8 +13,14 @@ class Scripts extends Command
 
     public function handle(): int
     {
-        $this->getScripts($this->argument('hook'))->each(fn ($script) => $this->line($this->buildScriptPath($script))
-        );
+        $this->getScripts($this->argument('hook'))->each(function ($script): void {
+            if (str_starts_with($script, '@')) {
+                $this->line(substr($script, 1));
+
+                return;
+            }
+            $this->line($this->buildScriptPath($script));
+        });
 
         return Command::SUCCESS;
     }

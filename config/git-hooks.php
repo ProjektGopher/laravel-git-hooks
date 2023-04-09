@@ -46,6 +46,7 @@ return [
          */
         'pre-push' => [
             'php-artisan-test',
+            '@php artisan test',
         ],
     ],
 ];
