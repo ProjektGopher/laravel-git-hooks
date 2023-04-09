@@ -27,7 +27,7 @@ class Install extends Command
         });
 
         $this->info('Verifying hooks are executable...');
-        exec('chmod +x '.config('git_hooks.scripts_dir').'/*');
+        exec('chmod +x '.config('git-hooks.scripts_dir').'/*');
         exec('chmod +x '.base_path('.git/hooks').'/*');
         exec('chmod +x '.__DIR__.'/../run-hook');
 
@@ -38,12 +38,12 @@ class Install extends Command
 
     private function getHooks(): Collection
     {
-        return collect(array_keys(config('git_hooks.hooks')));
+        return collect(array_keys(config('git-hooks.hooks')));
     }
 
     private function hookIsDisabled(string $hook): bool
     {
-        return in_array($hook, config('git_hooks.disabled'));
+        return in_array($hook, config('git-hooks.disabled'));
     }
 
     private function hookIsInstalled(string $hook): bool

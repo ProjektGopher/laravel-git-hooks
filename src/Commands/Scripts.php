@@ -27,11 +27,11 @@ class Scripts extends Command
 
     private function getScripts(string $hook): Collection
     {
-        return collect(config("git_hooks.hooks.{$hook}"));
+        return collect(config("git-hooks.hooks.{$hook}"));
     }
 
     private function buildScriptPath(string $script): string
     {
-        return implode([config('git_hooks.scripts_dir'), '/', $script]);
+        return implode([config('git-hooks.scripts_dir'), '/', $script]);
     }
 }
