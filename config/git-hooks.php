@@ -45,7 +45,7 @@ return [
          * @see https://git-scm.com/docs/githooks#_pre_push
          */
         'pre-push' => [
-            'php-artisan-test',
+            // 'php-artisan-test',
             '@php artisan test',
         ],
     ],
