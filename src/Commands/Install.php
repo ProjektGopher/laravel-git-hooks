@@ -14,6 +14,12 @@ class Install extends Command
 
     public function handle(): int
     {
+        if (! $this->gitIsInitialized()) {
+            $this->error('Git is not initialized in this project, aborting...');
+
+            return Command::FAILURE;
+        }
+
         $this->info('Installing git hooks...');
 
         $this->getHooks()->each(function ($hook) {
@@ -29,11 +35,16 @@ class Install extends Command
         $this->info('Verifying hooks are executable...');
         exec('chmod +x '.config('git-hooks.scripts_dir').'/*');
         exec('chmod +x '.base_path('.git/hooks').'/*');
-        exec('chmod +x '.__DIR__.'/../run-hook');
+        exec('chmod +x '.__DIR__.'/../../bin/run-hook');
 
         $this->info('Git hooks installed successfully.');
 
         return Command::SUCCESS;
+    }
+
+    private function gitIsInitialized(): bool
+    {
+        return File::exists(base_path('.git'));
     }
 
     private function getHooks(): Collection
@@ -57,6 +68,7 @@ class Install extends Command
     private function installHook(string $hook): void
     {
         if (! File::exists(base_path(".git/hooks/{$hook}"))) {
+            $this->line("{$hook} file does not exist yet, creating...");
             File::put(base_path(".git/hooks/{$hook}"), '#!/bin/sh'.PHP_EOL);
         }
 
