@@ -18,6 +18,7 @@
     <testsuites>
         <testsuite name="ProjektGopher Test Suite">
             <directory>tests</directory>
+            <directory suffix="Test.php">src</directory>
         </testsuite>
     </testsuites>
     <coverage>
