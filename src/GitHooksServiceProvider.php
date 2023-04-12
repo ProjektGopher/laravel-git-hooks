@@ -5,6 +5,7 @@ namespace ProjektGopher\GitHooks;
 use ProjektGopher\GitHooks\Commands\Install;
 use ProjektGopher\GitHooks\Commands\Run;
 use ProjektGopher\GitHooks\Commands\Scripts;
+use ProjektGopher\GitHooks\Commands\SkipOnce;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -24,6 +25,7 @@ class GitHooksServiceProvider extends PackageServiceProvider
                 Install::class,
                 Run::class,
                 Scripts::class,
+                SkipOnce::class,
             ]);
     }
 }
