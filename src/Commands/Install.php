@@ -3,6 +3,7 @@
 namespace ProjektGopher\GitHooks\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
@@ -55,14 +56,15 @@ class Install extends Command
     private function hookIsDisabled(string $hook): bool
     {
         return in_array($hook, config('git-hooks.disabled'));
+        // return collect(config('git-hooks.disabled'))->contains($hook);
     }
 
     private function hookIsInstalled(string $hook): bool
     {
-        return strpos(
+        return Str::contains(
             File::get(base_path(".git/hooks/{$hook}")),
             "eval \"$(php artisan git-hooks:get-run-cmd {$hook})\"",
-        ) !== false;
+        );
     }
 
     private function installHook(string $hook): void
