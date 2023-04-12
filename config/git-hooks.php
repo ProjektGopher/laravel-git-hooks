@@ -3,11 +3,18 @@
 /**
  * Git hooks configuration
  *
- * Hooks listed here can be found in the `vendor/projektgopher/laravel-git-hooks/scripts` directory.
+ * Scripts listed here can be found in the `vendor/projektgopher/laravel-git-hooks/scripts` directory.
+ * Any single-line terminal command can be used here as well by prepending it was an '@' symbol.
+ * @example '@php artisan test'
+ * @example '@npm run cypress'
  *
- * After installation, these can be tested by running `git hook run <hook-name>`.
+ * After installation, a hook's configuration can be
+ * tested by running `git hook run <hook-name>`.
+ * @example `git hook run pre-commit`
  */
 return [
+    // This will have to be changed if you have published the scripts directory
+    // `php artisan vendor:publish --tag=laravel-git-hooks-scripts`
     'scripts_dir' => 'vendor/projektgopher/laravel-git-hooks/scripts',
 
     'disabled' => [
