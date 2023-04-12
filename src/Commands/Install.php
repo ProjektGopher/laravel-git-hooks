@@ -3,9 +3,9 @@
 namespace ProjektGopher\GitHooks\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class Install extends Command
 {

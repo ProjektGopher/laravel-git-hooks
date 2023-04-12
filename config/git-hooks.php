@@ -5,6 +5,7 @@
  *
  * Scripts listed here can be found in the `vendor/projektgopher/laravel-git-hooks/scripts` directory.
  * Any single-line terminal command can be used here as well by prepending it was an '@' symbol.
+ *
  * @example '@php artisan test'
  * @example '@npm run cypress'
  *

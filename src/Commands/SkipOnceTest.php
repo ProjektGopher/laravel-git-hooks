@@ -14,7 +14,7 @@ it('creates a skip-once file', function () {
       ->assertExitCode(0);
 
   expect(File::exists(__DIR__.'/../../bin/skip-once'))->toBeTrue();
-  
+
   // Cleanup
   File::delete(__DIR__.'/../../bin/skip-once');
 });

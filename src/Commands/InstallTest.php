@@ -13,7 +13,7 @@ it('fails if git is not initialized', function () {
         ->once()
         ->with(base_path('.git'))
         ->andReturnFalse();
-    
+
     $this->artisan('git-hooks:install')
         ->expectsOutputToContain('Git is not initialized in this project, aborting...')
         ->assertExitCode(1);
